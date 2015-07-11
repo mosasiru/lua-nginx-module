@@ -199,7 +199,6 @@ Description
 
 このモジュールで提供される[Nginx API for Lua](#nginx-api-for-lua)がアップストリームのサービス(MySQL, PostgreSQL, Memcached, Redis, HTTP ウェブサービス など)へのリクエストのハンドリングに使われる限り、このモジュールを用いて実行されるLua のコードは[Apache's mod_lua](https://httpd.apache.org/docs/trunk/mod/mod_lua.html)  や  [Lighttpd's mod_magnet](http://redmine.lighttpd.net/wiki/1/Docs:ModMagnet) とは異なりネットワーク通信に対し*100% ノンブロッキング* になることができる。
 
-At least the following Lua libraries and Nginx modules can be used with this ngx_lua module:
 少なくとも以下のLuaライブラリーとNginxモジュールはngx_luaモジュールと使うことができる。
 
 * [lua-resty-memcached](https://github.com/openresty/lua-resty-memcached)
@@ -227,10 +226,9 @@ LuaのインタプリタかLuaJITのインスタンスは1つのnginxワーカ�
 典型的な使用例
 =====================
 
-Just to name a few:
 少し挙げると
 
-* Luaにおいて様々なnginxのアップストリームの出力(プロキシー、drizzle, postgres, redis, memcachedなど)をマッシュアップして出力する
+* Luaにおいて様々なnginxのアップストリームの出力(proxy, drizzle, postgres, redis, memcachedなど)をマッシュアップして出力する
 * 実際にアップストリームのバックエンドに到達する前に、Luaで任意の複雑なアクセスコントロールをし、セキュリティチェックを行う
 * (Luaによって) 任意の方法でレスポンスヘッダーを扱う
 * バックエンドの外部ストレージ(redis, memcached, mysql, postgresqlなど)から情報を取得し、その情報を用いてどのアップストリームのバックエンドにアクセスするかを実行時に選ぶ
@@ -240,13 +238,13 @@ Just to name a few:
 
 このモジュールは様々なNginxの要素を組み合わせ、Lua言語のパワーをユーザーに与えるため、その可能性は無限である。このモジュールはコーディングの完全な柔軟性を与える一方で、CPU時間とメモリ使用量の両方の点で、ネイティブC言語と同程度にしかパフォーマンスレベルに影響しない。これは特にLuaJIT 2.xが使える場合である。
 
-Other scripting language implementations typically struggle to match this performance level.
 一般的に他のスクリプト言語の実装では、このパフォーマンスレベルに一致するには苦労を要する。
 
 
 全てのLuaステート(Lua VMインスタンス)は、メモリ使用量を最小にするために、1つのnginxワーカープロセスにおいて処理される全てのリクエストで共有される。
 
-= Nginx互換性 = 
+Nginx互換性
+==============
 
 最新のモジュールは以下のNginxバージョンと互換性がある
 
@@ -261,7 +259,8 @@ Other scripting language implementations typically struggle to match this perfor
 * 0.9.x (last tested: 0.9.4)
 * 0.8.x >= 0.8.54 (last tested: 0.8.54)
 
-= インストール = 
+インストール
+==================
 
 Nginx、ngx_lua、 LuaJIT 2.0/2.1 (またはオプショナルなLua 5.1 インタプリタ)、 そして強力なNginxモジュールたちをバンドルする[ngx_openresty bundle](http://openresty.org)を使うことを強く推奨する。基本のインストール方法は単純なコマンドである: `./configure --with-luajit && make && make install`
 
@@ -344,7 +343,8 @@ liblua5.1パッケージからライブラリ名`liblua.so`は変更されてお
  ln -s /usr/lib/x86_64-linux-gnu/liblua5.1.so /usr/lib/liblua.so
 ```
 
-= コミュニティ = 
+コミュニティ
+==================
 
 英語メーリングリスト
 ------------------------------
